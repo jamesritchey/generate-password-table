@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Printing */
+@media print {
+	.no_print {
+		display: none !important; 
+	}
+}
+
+/* Regular */
+body {
+	font-size: 16px;
+}
+.section_outter_els {
+	min-width: 100%;
+	max-width: 100%;
+	display: block;
+}
+.section_inner_els {
+	min-width: 90%;
+	max-width: 90%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 25px;
+}
+.title_els {
+	font-size: 28px;
+	font-weight: normal;
+	color: #333333;
+}
+.heading1_els {
+	display: block;
+	font-size: 22px;
+	font-weight: bolder;
+	color: #000000;
+	margin-bottom: 10px;
+}
+.heading2_els {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #111111;
+	margin-bottom: 5px;
+	margin-top: 15px;
+}
+.label1_els {
+	font-size: 16px;
+	font-weight: normal;
+	display: inline-block;
+	margin-right: 3px;
+}
+.input1_els {
+	margin-left: auto;
+	margin-right: auto;
+}
+textarea {
+	resize: none;
+	box-sizing: border-box;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #666666;
+	max-height: 26px;
+	line-height: 22px;
+	vertical-align: middle;
+}
+.table_els {
+	display: block;
+	min-width: 100%;
+}
+.float_control_els {
+	clear: both;
+}
+.table_entry_heading_els {
+	background-color: #CCCCCC;
+	min-height: 50%;
+	min-width: 100%;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.table_entry_value_els {
+  background-color: #D6EEEE;
+  min-height: 50%;
+  min-width: 100%;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.table_entry_els {
+  display: inline-block;
+  background-color: #FFFFFF;
+  float: left;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+  min-width: 60px;
+  max-width: 60px;
+  height: 60px;
+}
+</style>
+</head>
+<body>
+
+<div class="section_outter_els no_print">
+<div class="section_inner_els">
+<h1 class="title_els">Ritchey Generate Password Table i1 v1</h1>
+<div>
+This tool generates a table that can be used to create deterministic passwords for services/devices. The table is generated from a master password. So long as the user has a unique master password, they will have a unique table. An offset number can be used to generate alternate tables for the same service/device.
+</div>
+</div>
+</div>
+
+<div class="section_outter_els">
+<div class="section_inner_els">
+<div class="heading1_els no_print">Generate Table</div>
+<div class="no_print">The table will contain sets of password acceptable characters associated with each letter of the alphabet. This table can be used to create passwords for any service or device by combining the sets of characters for each letter of the service/device name.</div>
+<div class="heading2_els no_print">Inputs</div>
+<div class="label1_els no_print">Master Password:</div><input class="input1_els no_print" id="master_password_el"><br>
+<div class="label1_els no_print">Offset:</div><input class="input1_els no_print" id="offset_el"><br>
+
+<button class="no_print" type="button" onclick="generate_table()">Submit</button>
+
+<div class="heading2_els">Table</div>
+<div class='table_els' id='table1_el'>
+	<div class="table_entry_els"><div class="table_entry_heading_els">A</div><div class="table_entry_value_els" id='a_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">B</div><div class="table_entry_value_els" id='b_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">C</div><div class="table_entry_value_els" id='c_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">D</div><div class="table_entry_value_els" id='d_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">E</div><div class="table_entry_value_els" id='e_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">F</div><div class="table_entry_value_els" id='f_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">G</div><div class="table_entry_value_els" id='g_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">H</div><div class="table_entry_value_els" id='h_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">I</div><div class="table_entry_value_els" id='i_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">J</div><div class="table_entry_value_els" id='j_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">K</div><div class="table_entry_value_els" id='k_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">L</div><div class="table_entry_value_els" id='l_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">M</div><div class="table_entry_value_els" id='m_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">N</div><div class="table_entry_value_els" id='n_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">O</div><div class="table_entry_value_els" id='o_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">P</div><div class="table_entry_value_els" id='p_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">Q</div><div class="table_entry_value_els" id='q_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">R</div><div class="table_entry_value_els" id='r_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">S</div><div class="table_entry_value_els" id='s_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">T</div><div class="table_entry_value_els" id='t_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">U</div><div class="table_entry_value_els" id='u_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">V</div><div class="table_entry_value_els" id='v_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">W</div><div class="table_entry_value_els" id='w_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">X</div><div class="table_entry_value_els" id='x_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">Y</div><div class="table_entry_value_els" id='y_el'></div></div>
+	<div class="table_entry_els"><div class="table_entry_heading_els">Z</div><div class="table_entry_value_els" id='z_el'></div></div>
+</div>
+<div class="float_control_els"></div>
+</div>
+</div>
+
+<div class="section_outter_els">
+<div class="section_inner_els">
+<div class="heading1_els">Determine Password (Manual)</div>
+<div>Match the letters in the name of the service/device to the table, and note the values. Trim the result to desired password length.</div>
+</div>
+</div>
+
+<div class="section_outter_els no_print">
+<div class="section_inner_els">
+<div class="heading1_els">Determine Password (Automated)</div>
+<div>The password table can be used to create passwords for multiple services or devices. Determing the password for a specific service/device is done by hand. However the process can also be automated using the form below.</div>
+<div class="heading2_els">Inputs</div>
+<div class="label1_els">Service/Device:</div><input class="input1_els" id="service_el"><br>
+<div class="label1_els">Password Length:</div><input class="input1_els" id="length_el"><br>
+<div class="heading2_els">Password</div>
+<div class="label1_els" id='password_label_el'>Password:</div><textarea onclick="copy_password()" class="output1_els" id="password_el"></textarea>
+</div>
+</div>
+
+<div class="section_outter_els no_print">
+<div class="section_inner_els">
+<div class="heading1_els">Notes</div>
+<div>
+<ul>
+<li>The password length input can be used to trim a password to a specific length, but won't pad a shorter one to grow it. If the service/device name isn't long enough, this means the password could be shorter than the specified length.</li>
+<li>All table values contain a lowercase letter, uppercase letter, number, and special character. They also always start with a lowercase letter. Using this approach reduced the complexity of developing this tool. However, as a result, it rules out many possible passwords that meet generally acceptable password criteria.</li>
+<li>To improve security, consider replacing 'combinations_random_1.js' with a CUSTOM copy in which the values are randomly sorted.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<script src="combinations_random_1.js"></script> 
+<script>
+function copy_password(){
+	document.getElementById("password_el").select();
+	document.execCommand("copy");
+}
+
+function character_to_number(character_va) {
+	if (character_va == 'a') {
+		return_va = 1;
+	} else if (character_va == 'b') {
+		return_va = 2;
+	} else if (character_va == 'c') {
+		return_va = 3;
+	} else if (character_va == 'd') {
+		return_va = 4;
+	} else if (character_va == 'e') {
+		return_va = 5;
+	} else if (character_va == 'f') {
+		return_va = 6;
+	} else if (character_va == 'g') {
+		return_va = 7;
+	} else if (character_va == 'h') {
+		return_va = 8;
+	} else if (character_va == 'i') {
+		return_va = 9;
+	} else if (character_va == 'j') {
+		return_va = 10;
+	} else if (character_va == 'k') {
+		return_va = 11;
+	} else if (character_va == 'l') {
+		return_va = 12;
+	} else if (character_va == 'm') {
+		return_va = 13;
+	} else if (character_va == 'n') {
+		return_va = 14;
+	} else if (character_va == 'o') {
+		return_va = 15;
+	} else if (character_va == 'p') {
+		return_va = 16;
+	} else if (character_va == 'q') {
+		return_va = 17;
+	} else if (character_va == 'r') {
+		return_va = 18;
+	} else if (character_va == 's') {
+		return_va = 19;
+	} else if (character_va == 't') {
+		return_va = 20;
+	} else if (character_va == 'u') {
+		return_va = 21;
+	} else if (character_va == 'v') {
+		return_va = 22;
+	} else if (character_va == 'w') {
+		return_va = 23;
+	} else if (character_va == 'x') {
+		return_va = 24;
+	} else if (character_va == 'y') {
+		return_va = 25;
+	} else if (character_va == 'z') {
+		return_va = 26;
+	} else if (character_va == 'A') {
+		return_va = 27;
+	} else if (character_va == 'B') {
+		return_va = 28;
+	} else if (character_va == 'C') {
+		return_va = 29;
+	} else if (character_va == 'D') {
+		return_va = 30;
+	} else if (character_va == 'E') {
+		return_va = 31;
+	} else if (character_va == 'F') {
+		return_va = 32;
+	} else if (character_va == 'G') {
+		return_va = 33;
+	} else if (character_va == 'H') {
+		return_va = 34;
+	} else if (character_va == 'I') {
+		return_va = 35;
+	} else if (character_va == 'J') {
+		return_va = 36;
+	} else if (character_va == 'K') {
+		return_va = 37;
+	} else if (character_va == 'L') {
+		return_va = 38;
+	} else if (character_va == 'M') {
+		return_va = 39;
+	} else if (character_va == 'N') {
+		return_va = 40;
+	} else if (character_va == 'O') {
+		return_va = 41;
+	} else if (character_va == 'P') {
+		return_va = 42;
+	} else if (character_va == 'Q') {
+		return_va = 43;
+	} else if (character_va == 'R') {
+		return_va = 44;
+	} else if (character_va == 'S') {
+		return_va = 45;
+	} else if (character_va == 'T') {
+		return_va = 46;
+	} else if (character_va == 'U') {
+		return_va = 47;
+	} else if (character_va == 'V') {
+		return_va = 48;
+	} else if (character_va == 'W') {
+		return_va = 49;
+	} else if (character_va == 'X') {
+		return_va = 50;
+	} else if (character_va == 'Y') {
+		return_va = 51;
+	} else if (character_va == 'Z') {
+		return_va = 52;
+	} else if (character_va == '0') {
+		return_va = 53;
+	} else if (character_va == '1') {
+		return_va = 54;
+	} else if (character_va == '2') {
+		return_va = 55;
+	} else if (character_va == '3') {
+		return_va = 56;
+	} else if (character_va == '4') {
+		return_va = 57;
+	} else if (character_va == '5') {
+		return_va = 58;
+	} else if (character_va == '6') {
+		return_va = 59;
+	} else if (character_va == '7') {
+		return_va = 60;
+	} else if (character_va == '8') {
+		return_va = 61;
+	} else if (character_va == '9') {
+		return_va = 62;
+	} else if (character_va == '.') {
+		return_va = 63;
+	} else if (character_va == '?') {
+		return_va = 64;
+	} else if (character_va == '!') {
+		return_va = 65;
+	} else if (character_va == ',') {
+		return_va = 66;
+	} else if (character_va == ';') {
+		return_va = 67;
+	} else if (character_va == ':') {
+		return_va = 68;
+	} else if (character_va == '@') {
+		return_va = 69;
+	} else if (character_va == '#') {
+		return_va = 70;
+	} else if (character_va == '$') {
+		return_va = 71;
+	} else if (character_va == '%') {
+		return_va = 72;
+	} else if (character_va == '^') {
+		return_va = 73;
+	} else if (character_va == '<') {
+		return_va = 74;
+	} else if (character_va == '>') {
+		return_va = 75;
+	} else if (character_va == '&') {
+		return_va = 76;
+	} else if (character_va == '*') {
+		return_va = 77;
+	} else if (character_va == '(') {
+		return_va = 78;
+	} else if (character_va == ')') {
+		return_va = 79;
+	} else if (character_va == '{') {
+		return_va = 80;
+	} else if (character_va == '}') {
+		return_va = 81;
+	} else if (character_va == '[') {
+		return_va = 82;
+	} else if (character_va == ']') {
+		return_va = 83;
+	} else if (character_va == '-') {
+		return_va = 84;
+	} else if (character_va == '+') {
+		return_va = 85;
+	} else if (character_va == '=') {
+		return_va = 86;
+	} else {
+		return_va = false;
+	}
+	return return_va;
+}
+
+function letter_to_number(letter_va) {
+	if (letter_va == 'a') {
+		return_va = 1;
+	} else if (letter_va == 'b') {
+		return_va = 2;
+	} else if (letter_va == 'c') {
+		return_va = 3;
+	} else if (letter_va == 'd') {
+		return_va = 4;
+	} else if (letter_va == 'e') {
+		return_va = 5;
+	} else if (letter_va == 'f') {
+		return_va = 6;
+	} else if (letter_va == 'g') {
+		return_va = 7;
+	} else if (letter_va == 'h') {
+		return_va = 8;
+	} else if (letter_va == 'i') {
+		return_va = 9;
+	} else if (letter_va == 'j') {
+		return_va = 10;
+	} else if (letter_va == 'k') {
+		return_va = 11;
+	} else if (letter_va == 'l') {
+		return_va = 12;
+	} else if (letter_va == 'm') {
+		return_va = 13;
+	} else if (letter_va == 'n') {
+		return_va = 14;
+	} else if (letter_va == 'o') {
+		return_va = 15;
+	} else if (letter_va == 'p') {
+		return_va = 16;
+	} else if (letter_va == 'q') {
+		return_va = 17;
+	} else if (letter_va == 'r') {
+		return_va = 18;
+	} else if (letter_va == 's') {
+		return_va = 19;
+	} else if (letter_va == 't') {
+		return_va = 20;
+	} else if (letter_va == 'u') {
+		return_va = 21;
+	} else if (letter_va == 'v') {
+		return_va = 22;
+	} else if (letter_va == 'w') {
+		return_va = 23;
+	} else if (letter_va == 'x') {
+		return_va = 24;
+	} else if (letter_va == 'y') {
+		return_va = 25;
+	} else if (letter_va == 'z') {
+		return_va = 26;
+	} else if (letter_va == 'A') {
+		return_va = 1;
+	} else if (letter_va == 'B') {
+		return_va = 2;
+	} else if (letter_va == 'C') {
+		return_va = 3;
+	} else if (letter_va == 'D') {
+		return_va = 4;
+	} else if (letter_va == 'E') {
+		return_va = 5;
+	} else if (letter_va == 'F') {
+		return_va = 6;
+	} else if (letter_va == 'G') {
+		return_va = 7;
+	} else if (letter_va == 'H') {
+		return_va = 8;
+	} else if (letter_va == 'I') {
+		return_va = 9;
+	} else if (letter_va == 'J') {
+		return_va = 10;
+	} else if (letter_va == 'K') {
+		return_va = 11;
+	} else if (letter_va == 'L') {
+		return_va = 12;
+	} else if (letter_va == 'M') {
+		return_va = 13;
+	} else if (letter_va == 'N') {
+		return_va = 14;
+	} else if (letter_va == 'O') {
+		return_va = 15;
+	} else if (letter_va == 'P') {
+		return_va = 16;
+	} else if (letter_va == 'Q') {
+		return_va = 17;
+	} else if (letter_va == 'R') {
+		return_va = 18;
+	} else if (letter_va == 'S') {
+		return_va = 19;
+	} else if (letter_va == 'T') {
+		return_va = 20;
+	} else if (letter_va == 'U') {
+		return_va = 21;
+	} else if (letter_va == 'V') {
+		return_va = 22;
+	} else if (letter_va == 'W') {
+		return_va = 23;
+	} else if (letter_va == 'X') {
+		return_va = 24;
+	} else if (letter_va == 'Y') {
+		return_va = 25;
+	} else if (letter_va == 'Z') {
+		return_va = 26;
+	} else {
+		return_va = false;
+	}
+	return return_va;
+}
+
+function generate_table() {
+	// Get the value of master_password_el
+	var master_password_ar = document.getElementById("master_password_el").value;
+	// Convert to a number
+	var master_password_ar = master_password_ar.split("");
+	var master_password_va = 0;
+	for (var i = 0; i < master_password_ar.length; i++) {
+		var n = character_to_number(master_password_ar[i]);
+		var master_password_va = master_password_va + n;
+	}
+	// Get value of offset_el
+	var offset_va = document.getElementById("offset_el").value;
+	if (offset_va == '') {
+		var offset_va = 1;
+	}
+	// Convert to a number
+	var offset_va = parseInt(offset_va);
+	// Combine numbers
+	var n_va = master_password_va + offset_va;
+	// Generate table values, and set them
+	////Imported from external JS file
+	// Select 26 values
+	var start = n_va - 1;
+	var end = n_va + 25;
+	var select_combinations_ar = combinations_ar.slice(start, end);
+	// Write to table
+	//var select_combination_va = select_combinations_ar.toString();
+	document.getElementById("a_el").innerHTML = select_combinations_ar[0];
+	document.getElementById("b_el").innerHTML = select_combinations_ar[1];
+	document.getElementById("c_el").innerHTML = select_combinations_ar[2];
+	document.getElementById("d_el").innerHTML = select_combinations_ar[3];
+	document.getElementById("e_el").innerHTML = select_combinations_ar[4];
+	document.getElementById("f_el").innerHTML = select_combinations_ar[5];
+	document.getElementById("g_el").innerHTML = select_combinations_ar[6];
+	document.getElementById("h_el").innerHTML = select_combinations_ar[7];
+	document.getElementById("i_el").innerHTML = select_combinations_ar[8];
+	document.getElementById("j_el").innerHTML = select_combinations_ar[9];
+	document.getElementById("k_el").innerHTML = select_combinations_ar[10];
+	document.getElementById("l_el").innerHTML = select_combinations_ar[11];
+	document.getElementById("m_el").innerHTML = select_combinations_ar[12];
+	document.getElementById("n_el").innerHTML = select_combinations_ar[13];
+	document.getElementById("o_el").innerHTML = select_combinations_ar[14];
+	document.getElementById("p_el").innerHTML = select_combinations_ar[15];
+	document.getElementById("q_el").innerHTML = select_combinations_ar[16];
+	document.getElementById("r_el").innerHTML = select_combinations_ar[17];
+	document.getElementById("s_el").innerHTML = select_combinations_ar[18];
+	document.getElementById("t_el").innerHTML = select_combinations_ar[19];
+	document.getElementById("u_el").innerHTML = select_combinations_ar[20];
+	document.getElementById("v_el").innerHTML = select_combinations_ar[21];
+	document.getElementById("w_el").innerHTML = select_combinations_ar[22];
+	document.getElementById("x_el").innerHTML = select_combinations_ar[23];
+	document.getElementById("y_el").innerHTML = select_combinations_ar[24];
+	document.getElementById("z_el").innerHTML = select_combinations_ar[25];
+	
+	// If applicable also generate the password for a specified service. The table can be used for many services, but the user may have requested a specific service password be out putted.
+	var length_va = document.getElementById("length_el").value;
+	if (length_va == ''){
+		length_va = 16;
+	} else {
+		var length_va = parseInt(length_va);
+	}
+	var service_ar = document.getElementById("service_el").value;
+	if (service_ar == '') {
+		var service_ar = 'Default';
+	}
+	var service_va = service_ar;
+	var service_ar = service_ar.split("");
+	var service_password_va = '';
+	
+	for (var i = 0; i < service_ar.length; i++) {
+		//Get position in alphabet (subtract 1 to make compatible with array)
+		var n2 = letter_to_number(service_ar[i]);
+
+		if (n2 == false){
+			//Do nothing
+		} else {
+			var n2 = n2 - 1;
+			//Extract value from table
+			var extract_va = select_combinations_ar[n2];
+			var service_password_va = service_password_va.concat(extract_va);
+		}
+	}
+	var service_password_shortened_va = service_password_va.substring(0, length_va);
+	document.getElementById("password_label_el").innerHTML = "Password for '" + service_va + "':";
+	document.getElementById("password_el").innerHTML = service_password_shortened_va;
+}
+</script>
+
+</body>
+</html>

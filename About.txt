@@ -1,0 +1,2 @@
+Author:James Daniel Marrs Ritchey
+License:Ritchey Permissive License v16
